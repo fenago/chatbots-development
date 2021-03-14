@@ -1,224 +1,102 @@
+#!/usr/bin/env node
 
-// SMS Bot for trains
-// Author: Srini Janarthanam
+console.log('Running - SMS Train Notification');
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const twilio = require('twilio')
+//Index.js - SMSBot
 
-const app = express()
+//Add your Account SID 
+var accountSid = 'your_account_sid'; 
 
+//Add your Auth Token here
+var authToken = 'your_auth_token';   
 
+//Add your twilio number here
+var fromNumber ='your_twilio_number'; // example +441438301012
 
-app.set('port', (process.env.PORT || 5000))
+var destination = 'Glasgow Queen Street';
+var userPhoneNumber = 'your_personal__number'; // example +447888999999
+var sourceStationCode = 'EDB';
+var sourceStation = 'Edinburgh Waverley';
 
-// Process application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
-
-// Process application/json
-app.use(bodyParser.json())
-
-app.use(express.static('public'))
-
-// Spin up the server
-app.listen(app.get('port'), function() {
-    console.log('running on port', app.get('port'))
-})
-
-// Index route
-app.get('/', function (req, res) {
-    res.send('Hello world, I am SMS bot.')
-})
-
-//Twilio webhook
-app.post('/sms/', function (req, res) {
-    //send it to the bot
-    
-    var sessionId = req.body.From;
-    var userUtterance = req.body.Body;
-    
-    //API.AI 
-    var apiai = require('apiai');
-    var apiai1 = apiai('YOUR-API-KEY');
-
-    var requestAPIAI = apiai1.textRequest(userUtterance, {
-        sessionId: sessionId
-    });
-
-    var botSays = ''; 
-    
-    requestAPIAI.on('response', function(response) {
-        console.log(response);
-        if (response.result.actionIncomplete){
-            botSays = response.result.fulfillment.speech;
-            console.log('BotSays: ' + botSays);
-    
-            var twiml = new twilio.TwimlResponse();
-            twiml.message(botSays);
-            res.writeHead(200, {'Content-Type': 'text/xml'});
-            res.end(twiml.toString());
-        }
-        else {
-            getTrainInfo(response.result.metadata.intentName, response.result.parameters, res);
-        }
-        
-
-    });
-
-    requestAPIAI.on('error', function(error) {
-        console.log(error);
-    });
-
-    requestAPIAI.end();
-})
+getTrains('EDB');
 
 
-function getTrainInfo(intent, parameters, res){
-    
-    if (intent == 'request_live_departures'){
-        return getLiveDepartures(parameters.Station, res); 
-    } 
-    else if (intent == 'request_next_train'){
-        return getNextTrain(parameters.fromStation, parameters.toStation, res); 
-    } 
-    else {
-        var botSays = 'Working on it...';
-        console.log('BotSays: ' + botSays);
 
-        var twiml = new twilio.TwimlResponse();
-        twiml.message(botSays);
-        res.writeHead(200, {'Content-Type': 'text/xml'});
-        res.end(twiml.toString());
-    }
-}
 
-function getLiveDepartures(source, res){
-    
+function getTrains(source){
     var request = require('request');
-    var url = 'http://transportapi.com/v3/uk/train/station/' + source+ '/live.json?app_id=60ce46ea&app_key=YOUR_APP_KEY';
+    var url = 'http://transportapi.com/v3/uk/train/station/' + source+ '/live.json?app_id=4f1129f7&app_key=YOUR_API_KEY';
     //console.log(url);
     
     request(url, function (error, response, body) {
        if (response){
             var json = JSON.parse(body);
             if (json.departures){
+                //console.log('Departures:', JSON.stringify(json.departures)); 
                 
-                var botSays = summarize(json.departures.all, 5);
-                console.log('BotSays: ' + botSays);
-
-                var twiml = new twilio.TwimlResponse();
-                twiml.message(botSays);
-                res.writeHead(200, {'Content-Type': 'text/xml'});
-                res.end(twiml.toString());
+                var dep = getTrainsToDestination(destination, json.departures.all);
+                
+                var summary = summarize(destination, dep);
+    
+                console.log('Summary: ' + summary);
+                sendSMS(summary, userPhoneNumber);
                 
             } else  {
-                var botSays = 'No Departures found!'
-                console.log('BotSays: ' + botSays);
-
-                var twiml = new twilio.TwimlResponse();
-                twiml.message(botSays);
-                res.writeHead(200, {'Content-Type': 'text/xml'});
-                res.end(twiml.toString());
+                console.log('No Departures found!');
             } 
         } else {
             console.log('error:', error); // Print the error if one occurred 
-            
-            var botSays = 'Error in fetching trains info. Sorry!';
-            console.log('BotSays: ' + botSays);
-
-            var twiml = new twilio.TwimlResponse();
-            twiml.message(botSays);
-            res.writeHead(200, {'Content-Type': 'text/xml'});
-            res.end(twiml.toString());
         }
     });
 }
 
-function summarize(departures, n){
+
+function summarize(destination, departures){
     
     var out = '';
     if (departures.length > 0){
-        out = 'Live departures:\n';
-        for (var i=0; i < n; i++){
+        out = 'Here are the departures this morning to ' + destination + ".\n";
+        for (var i=0; i< departures.length; i++){
             var service = departures[i];
-            var serviceSummary = service.operator_name + ":" + service.destination_name 
-                    + "@" + service.expected_departure_time; 
-            out += serviceSummary + "\n";
+            var serviceSummary = service.operator_name + " at " + service.expected_departure_time; 
+            out += serviceSummary + "\n"
         }
         
     } else {
-        out = 'There are no trains from ' + source;
+        out = 'There are no trains to ' + destination + ' from ' + sourceStation;
     }
     
     
     return out;
 }
 
-function getNextTrain(source, destination, res){
-    
-    var request = require('request');
-    var url = 'http://transportapi.com/v3/uk/train/station/' + source+ '/live.json?app_id=60ce46ea&app_key=YOUR_APP_KEY';
-    //console.log(url);
-    
-    request(url, function (error, response, body) {
-       if (response){
-            var json = JSON.parse(body);
-            if (json.departures){
-                
-                var botSays = getNextTrainToDestination(destination, json.departures.all);
-                console.log('BotSays: ' + botSays);
 
-                var twiml = new twilio.TwimlResponse();
-                twiml.message(botSays);
-                res.writeHead(200, {'Content-Type': 'text/xml'});
-                res.end(twiml.toString());
-                
-            } else  {
-                var botSays = 'No Departures found!'
-                console.log('BotSays: ' + botSays);
-
-                var twiml = new twilio.TwimlResponse();
-                twiml.message(botSays);
-                res.writeHead(200, {'Content-Type': 'text/xml'});
-                res.end(twiml.toString());
-            } 
-        } else {
-            console.log('error:', error); // Print the error if one occurred 
-            
-            var botSays = 'Error in fetching trains info. Sorry!';
-            console.log('BotSays: ' + botSays);
-
-            var twiml = new twilio.TwimlResponse();
-            twiml.message(botSays);
-            res.writeHead(200, {'Content-Type': 'text/xml'});
-            res.end(twiml.toString());
-        }
-    });
-}
-
-function getNextTrainToDestination(destination, allDepartures){
+function getTrainsToDestination(destination, allDepartures){
+    var d = [];
     
     if (allDepartures){
         for (var i=0; i < allDepartures.length; i++){
             var service = allDepartures[i];
-            if (service.destination_name == getStationName(destination)){
-                var serviceSummary = service.operator_name + ":" + service.destination_name 
-                    + "@" + service.expected_departure_time + "\n"; 
-                return serviceSummary;
+            if (service.destination_name == destination){
+                d.push(service)
             }
         }
         
     }
-    return null;
+    return d;
 }
 
-function getStationName(stationCode){
-    if (stationCode == 'GLC'){
-        return 'Glasgow Central';
-    }
-    else if (stationCode == 'EDB'){
-        return 'Edinburgh';
-    }
-    
-}
 
+function sendSMS(msg, userPhoneNumber){
+    var twilio = require('twilio');
+    var client = new twilio(accountSid, authToken);
+
+    //Create a message with to and from numbers
+    client.messages.create({
+        body: msg,
+        to: userPhoneNumber,  
+        from: fromNumber
+    })
+    .then((message) => console.log(message.sid));
+
+}
