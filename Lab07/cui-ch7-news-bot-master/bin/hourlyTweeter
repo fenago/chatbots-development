@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 //hourlyTweeter.js
-//Author: Srini Janarthanam
+//Author: Fenago
 
 //This program is called hourly using an external scheduler in Heroku
 //It will send news articles to users based on their preferences as recorded in the database.

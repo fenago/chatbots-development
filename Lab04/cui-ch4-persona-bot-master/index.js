@@ -1,7 +1,7 @@
 
 
 // EinsteinBot webhooks
-// Author : Srini Janarthanam
+// Author : Fenago
 
 const express = require('express')
 const bodyParser = require('body-parser')

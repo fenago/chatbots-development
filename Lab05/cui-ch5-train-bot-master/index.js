@@ -13,8 +13,10 @@ var authToken = 'your_auth_token';
 //Add your twilio number here
 var fromNumber ='your_twilio_number'; // example +441438301012
 
-var destination = 'Glasgow Queen Street';
+//Add your personal number here
 var userPhoneNumber = 'your_personal__number'; // example +447888999999
+
+var destination = 'Glasgow Queen Street';
 var sourceStationCode = 'EDB';
 var sourceStation = 'Edinburgh Waverley';
 

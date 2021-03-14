@@ -2,7 +2,7 @@
 
 /*
 * Alexa skill - TV schedules
-* Author: Srini Janarthanam
+* Author: Fenago
 */
 
 const request = require('request')
