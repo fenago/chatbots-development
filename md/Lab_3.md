@@ -1,127 +1,24 @@
 
+<img align="right" src="./logo.png">
 
-Chapter 3. Let\'s Talk Weather 
+
+
+Lab 3. Let\'s Talk Weather 
 ---------------------------------------
 
-
-
-Facebook Messenger is one of the most popular globally-available
-messaging platforms. You can access it using your Facebook account.
-Messenger is available separately to Facebook in the form of a website
-([http://messenger.com](http://messenger.com/) and
-[http://m.me](http://m.me/)) and as a smartphone app. This makes
-it extremely accessible. Facebook has more than 1 billion global users
-and all of these social media users have access to Messenger as well;
-this staggering number is also growing every day. This makes it a
-popular choice for chatbot developers as a deployment platform. In
-addition to the number of users, the company is investing hugely in
-making it a place for chatbots to thrive. Its recent features, such as
-the **`Discover`** tab and SDK upgrade, serve as testimony to their
-commitment.
-
-In this chapter, we will design and implement a chatbot that can talk
+In this lab, we will design and implement a chatbot that can talk
 about the weather. We will build a chatbot and integrate it with a
 backend service that can provide us with real-time weather information.
 We will then go on to integrate the chatbot in Facebook Messenger. And
 finally, have a look at the exclusive features of Messenger that can be
 used to make the chatbot more attractive and engaging.
 
-By the end of this chapter, you will be able to:
+By the end of this lab, you will be able to:
 
 
 -   Design conversational tasks to talk about the weather
 -   Create backend integrations using the OpenWeatherMap API,
--   Build a chatbot in Java 8 and Node.js and host it on the cloud using
-    Heroku
--   Understand Facebook Messenger SDK and types of message templates
--   Integrate the chatbot in Messenger
-
-
-
-Conversational tasks 
---------------------------------------
-
-
-
-Let\'s first figure out the tasks that we want the chatbot to perform. I
-would think that a chatbot capable of talking about the weather should
-be able to do it along the following lines:
-
-
--   Weather now
--   Weather today
--   Weather this week
--   Weather this weekend
--   Weather in the future
-
-
-All the mentioned reports are based on a geographical location. This
-piece of information could be provided in many formats. Most people
-would provide a city/town name, or a ZIP code. But given the fact that
-mobile devices have GPS capability, and messaging apps allow for
-location sharing, another way of locating the user could be using
-LatLong (latitude and longitude) coordinates. Let\'s account for all
-these variations. In addition to these tasks and input types, we need to
-consider requests for clarifications that the chatbot must be capable of
-if the input location information is ambiguous.
-
-
-
-Conversational design 
----------------------------------------
-
-
-
-Now that we have identified the tasks that our chatbot needs to do,
-let\'s go on and design the conversational flow. Conversational flow is
-the basic layout of how the interaction will happen between the user and
-the bot.
-
-Let\'s scribble down a few simple imagined conversations between the
-user and our weather bot.
-
-Example 1:
-
-
-
-
-``` 
-User: Hi
-Bot: Hi there! I am WeatherMan, your weather bot. What would you like to know? Current weather or forecast?
-User: current weather
-Bot: Ok. Which city?
-User: London, GB
-Bot: Ok. Weather now in London, GB. Temperature is 10 degrees Celsius. Clear Skies.
-User: Thanks.
-Bot: No problem! :)
-```
-
-Let\'s make another one that is slightly more complex.
-
-Example 2:
-
-
-
-
-``` 
-User: Hi there
-Bot: Hi there! I am WeatherMan, your weather bot. What would you like to know? Current weather or forecast?
-User: Forecast
-Bot: Ok. When? Tomorrow or this weekend?
-User: Tomorrow
-Bot: Ok. Which city?
-User: Edinburgh
-Bot: Edinburgh, US or Edinburgh, GB?
-User: Edinburgh, GB
-Bot: Ok. Weather tomorrow in Edinburgh, GB. Temperature is 12 degrees Celsius. Cloudy.
-```
-
-Well within the domain of weather talk, more complex conversations are
-possible. However, we will work with the preceding examples to show how
-you can build a chatbot and deploy it on Facebook Messenger in
-principle. Let us deal with more complex utterances and conversations
-later. 
-
+-   Build a chatbot in Java 8
 
 
 Backend tasks 
@@ -152,7 +49,7 @@ data.
 
 
 
-Unlike the last chapter, where we created content for the chatbot
+Unlike the last lab, where we created content for the chatbot
 manually, we will be using this data live from the service endpoint. In
 order to do this, we need to sign up to this. To sign up, navigate
 to [https://home.openweathermap.org/](https://home.openweathermap.org/)

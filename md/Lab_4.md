@@ -1,3 +1,7 @@
+
+<img align="right" src="./logo.png">
+
+
 Lab 4: Build Chatbot using NLTK & Keras
 =======================================
 

@@ -1,10 +1,13 @@
 
 
-Chapter 6. Restaurant Search 
+<img align="right" src="./logo.png">
+
+
+Lab 6. Restaurant Search 
 -------------------------------------
 
 
-In this chapter, we are going to explore how a conversation management
+In this lab, we are going to explore how a conversation management
 module can be built using an existing library---Bot Builder SDK. First,
 we will understand the MS Bot Framework that Bot Builder SDK is a part
 of. We will install the necessary software and libraries and learn to
@@ -15,7 +18,7 @@ will then explore the Zomato service for restaurant data and integrate
 it into a chatbot built using the Bot Builder SDK. We will finally
 deploy it on Skype.
 
-By the end of this chapter, you will be able to:
+By the end of this lab, you will be able to:
 
 
 -   Understand the basics of MS Bot Framework
@@ -309,7 +312,7 @@ Heroku:
 
 
 Good work! Your bot is in the cloud and ready to be deployed on Skype
-and other channels, but we will explore that later in the chapter.
+and other channels, but we will explore that later in the lab.
 
 
 
@@ -1325,7 +1328,7 @@ Summary
 
 
 
-In the previous chapters, we explored and learned about how to build a
+In the previous labs, we explored and learned about how to build a
 chatbot using a variety of tools. These include development environments
 such as Chatfuel, natural language processing tools such as API.AI, and
 channel-specific SDKs such as Messenger SDK. However, when it comes to
@@ -1339,7 +1342,7 @@ chatbots quickly and easily. This gives developers greater flexibility
 than drag-and-drop tools, and it saves time and effort compared to
 building the bot from scratch.
 
-In this chapter, we learned how to built a bot with the Bot Builder SDK
-and deploy it on the Skype channel. In the next chapter, we will move on
+In this lab, we learned how to built a bot with the Bot Builder SDK
+and deploy it on the Skype channel. In the next lab, we will move on
 to more advanced bots that are drastically different from those that we
 have explored so far---the Twitter bot!

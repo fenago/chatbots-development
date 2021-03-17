@@ -1,7 +1,10 @@
 
+<img align="right" src="./logo.png">
+
 
 Lab 1. Build a Chatbot using Python/Flask
 ========================================
+
 
 ![](./images/chatbot-1024x340.png)
 
@@ -14,57 +17,18 @@ of what’s possible in building custom chatbots and NLP in general.
 Let’s talk about Chatterbot, with the help of which we are planning to
 build our chatbot using Python/Flask.
 
-**ChatterBot** is a Python library that makes it easy to generate
-automated responses to a user’s input. ChatterBot uses a selection of
-machine learning algorithms to produce different types of responses.
-This makes it easy for developers to create chat bots and automate
-conversations with users. 
-
-An example of typical input would be something like this:
-
-```
-user: Good morning! How are you doing?
-bot:  I am doing very well, thank you for asking.
-user: You're welcome.
-bot:  Do you like hats?
-```
-
-### How ChatterBot Works
-
-ChatterBot is a Python library designed to make it easy to create
-software that can engage in conversation.
-
-An untrained instance of
-ChatterBot starts off with no knowledge of how to communicate. Each time
-a user enters a statement,
-the library saves the text that they entered and the text that the
-statement was in response to. As ChatterBot receives more input the
-number of responses that it can reply and the accuracy of each response
-in relation to the input statement increase.
-
-The program selects the closest
-matching [response](https://chatterbot.readthedocs.io/en/stable/glossary.html#term-response) by
-searching for the closest matching known statement that matches the
-input, it then chooses a response from the selection of known responses
-to that statement.
-
-Process flow diagram
-====================
-
-![](./images/chatterbot-process-flow.svg)
-
-![](https://chatterbot.readthedocs.io/en/stable/_images/chatterbot-process-flow.svg)
 
 
-#### Let’s build our chatbot 🙂
+#### Let’s build our chatbot
 
-### Installing dependencies
+
+#### Installing dependencies
 
 ```
 pip3 install chatterbot chatterbot_corpus
 ```
 
-### Importing Classes – Getting started!!
+#### Importing Classes – Getting started!!
 
 ```
 from chatterbot import ChatBot
@@ -72,7 +36,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 ```
 
-### Creating the bot
+#### Creating the bot
 
 We are creating a Flask app, to get started with Flask, you can visit
 [***here***](https://www.flaskapi.org/)

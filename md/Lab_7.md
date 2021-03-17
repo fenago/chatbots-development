@@ -1,53 +1,19 @@
 
 
-Chapter 7. The News Bot 
+<img align="right" src="./logo.png">
+
+
+Lab 7. The News Bot 
 --------------------------------
 
 
-
-So far we have explored how to build chatbots and deploy them in a
-variety of messaging platforms such as Facebook Messenger, Skype, and
-even SMS. We explored the different ways that tools, such as API.AI, can
-be used in the context of chatbot building. In this chapter, we are
-going to explore how chatbots can be integrated into Twitter, a social
-media platform. There are many similar social media platforms, such as
-Facebook and LinkedIn, that cater to different contexts and markets.
-What we will explore in this chapter conceptually applies to all of
-these platforms.
-
- Twitter is an online news and social media platform where users can
-post and interact with messages that are called [**tweets**].
-It has around 328 million active monthly users worldwide, with around
-317 million active monthly users tweeting around 500 million tweets
-every day (Statista 2017). Twitter is used by businesses as a tool for
-brand engagement, product announcements, and customer service.
-
-In this chapter, we will explore how to build chatbots on Twitter so
-that tweets can be posted and responded to automatically and quickly. We
-are going to build a news bot on the Twitter platform that tweets
-current news on its timeline on a regular basis. It will also
-personalize the experience for its followers by sending them news from
-topics that they are interested in. We will first explore the Twitter
-API and build core modules for tweeting, searching, and retweeting.
-Then, we will explore a data source for news around the globe. We will
-then build a simple bot that tweets top news on its timeline. Finally,
-we will build a personalized news bot that listens to incoming tweets
-from users about the topics that they are interested in and tweets
-user-specific news to them.
-
-By the end of this chapter, you will be able to:
+By the end of this lab, you will be able to:
 
 
 -   Understand the basics of the Twitter API
 -   Create a bot that listens to hashtags
 -   Build a Twitter bot that tweets and retweets
 -   Integrate NewsAPI and tweet top stories
--   Integrate MongoDB to track user interests
--   Build a conversational bot to get user interests and serve
-    personalized news
--   Use Heroku Scheduler to tweet personalized news at a regular
-    frequency
-
 
 
 Getting started with the Twitter app 
@@ -256,7 +222,7 @@ a popular one so that you can see the code in action. 
 
 
 Congratulations! You have built your first Twitter bot. We will use the
-hashtag listening module later in this chapter to build a more complex
+hashtag listening module later in this lab to build a more complex
 bot.
 
 
@@ -1536,7 +1502,7 @@ use metrics, such as retweet counts, follower numbers, and like counts,
 to qualify a tweet for retweeting? Explore these questions to build
 better and more useful Twitter bots. 
 
-In this chapter, we have covered a lot. We started off with the Twitter
+In this lab, we have covered a lot. We started off with the Twitter
 API and got a taste of how we can automatically tweet, retweet, and
 search for tweets using hashtags. We then explored a News source API
 that provides news articles from about 70 different newspapers. We

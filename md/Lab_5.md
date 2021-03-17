@@ -1,10 +1,13 @@
 
+<img align="right" src="./logo.png">
 
-Chapter 5. Let\'s Catch a Train 
+
+
+Lab 5. Let\'s Catch a Train 
 ----------------------------------------
 
 
-In this chapter, we will design and build a chatbot to help users plan
+In this lab, we will design and build a chatbot to help users plan
 their train journeys. We will use a Transport data API to obtain
 information about trains, their arrival and departure timings at
 stations, and so on, and to serve the information, build a chatbot to
@@ -23,7 +26,7 @@ users based on their requests in natural language. We will explore how
 to build and integrate API.AI agents into our chatbot to understand
 language and drive the conversation.
 
-By the end of this chapter, you will be able to:
+By the end of this lab, you will be able to:
 
 
 -   Design conversational tasks based on data
@@ -39,7 +42,7 @@ Exploring Transport API
 
 
 To get started, let\'s have a look at the data source that we are going
-to use in this chapter. Transport API is a data service for all public
+to use in this lab. Transport API is a data service for all public
 transport services in the UK. If you are in a different country, you
 would be able to find something similar to your country. But you can
 still play around with this service. Transport API is a data platform
@@ -886,4 +889,4 @@ you tried to chat with your bot over SMS and realized how easy it is to
 get useful information without internet data. We did explore a few
 conversational tasks and also got to implement a couple. However, you
 could move on to more complex tasks, such as journey planning, based on
-the chatbot model that we built in this chapter. 
+the chatbot model that we built in this lab. 
