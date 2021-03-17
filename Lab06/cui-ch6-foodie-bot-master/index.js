@@ -240,7 +240,7 @@ bot.recognizer({
 
 bot.dialog('help', [
     function (session) {
-        session.send('I can help you look for a    restaurant or order a takeaway!');
+        session.send('I can help you look for a restaurant or order a takeaway!');
         session.endDialog();
     }
 ]).triggerAction({
