@@ -30,8 +30,6 @@ conversation = [
 ]
 
 trainer.train(conversation)
-trainer.train(math_talk_1)
-trainer.train(math_talk_2)
 
 corpus_trainer = ChatterBotCorpusTrainer(bot)
 corpus_trainer.train('chatterbot.corpus.english')
