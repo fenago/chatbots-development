@@ -16,13 +16,15 @@ var secret = {
 }
 
 var Twitter = new TwitterPackage(secret);
+
 getAllSourcesAndTweet();
-console.log("Hello World! I am the hourly twitter bot!");
 
+console.log("Hello World! I am twitter bot!");
 
+// Add your twitter username instead of null i-e: "@twitter_username"
 topNewsTweeter('cnn', null);
 
-function topNewsTweeter(newsSource, screen_name, status_id) {
+function topNewsTweeter(newsSource, screen_name) {
     request({
         url: 'https://newsapi.org/v1/articles?source='
             + newsSource +
@@ -41,18 +43,18 @@ function topNewsTweeter(newsSource, screen_name, status_id) {
         });
 }
 
-function tweetTopArticle(articles, screen_name, status_id) {
+function tweetTopArticle(articles, screen_name) {
     var article = articles[0];
     tweet(article.title + " " + article.url, screen_name);
 }
 
 
 
-function tweetFromRandomSource(sources, screen_name, status_id) {
+function tweetFromRandomSource(sources, screen_name) {
     var max = sources.length;
     var randomSource = sources[Math.floor(Math.random() *
         (max + 1))];
-    //topNewsTweeter(randomSource, screen_name, status_id);
+    topNewsTweeter(randomSource, screen_name);
 }
 
 function getAllSourcesAndTweet() {
@@ -73,9 +75,36 @@ function getAllSourcesAndTweet() {
                         botResponse.sources[i].id)
                     sources.push(botResponse.sources[i].id)
                 }
-                tweetFromRandomSource(sources, null, null);
+
+                // Add your twitter username instead of null i-e: "@twitter_username"
+                tweetFromRandomSource(sources, null);
             } else {
                 console.log('Sorry. No news sources!');
             }
         });
+}
+
+
+function tweet(statusMsg, screen_name) {
+
+    console.log('Sending tweet to: ' + screen_name);
+    // console.log('In response to:' + status_id);
+    var msg = statusMsg;
+    if (screen_name != null) {
+        msg = '@' + screen_name + ' ' + statusMsg;
+    }
+    console.log('Tweet:' + msg);
+    Twitter.post('statuses/update', {
+        status: msg
+    }, function (err, response) {
+        // if there was an error while tweeting
+        if (err) {
+            console.log('Something went wrong while TWEETING...');
+            console.log(err);
+        }
+        else if (response) {
+            console.log('Tweeted!!!');
+            console.log(response)
+        }
+    });
 }

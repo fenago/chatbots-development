@@ -6,10 +6,10 @@ var request = require('request');
 console.log("Hello World! I am a twitter bot!");
 
 var secret = {
-  consumer_key: 'YOUR_CONSUMER_KEY',
-  consumer_secret: 'YOUR_CONSUMER_SECRET',
-  access_token_key: 'YOUR_ACCESS_TOKEN_KEY',
-  access_token_secret: 'YOUR_ACCESS_TOKEN_SECRET'
+  consumer_key: 'zpOlUHpKU2c0LvDfDw6S4CXGn',
+  consumer_secret: 'fEcbpv4gtd8Cxd5KRqO5768gqaikgs79trSnNKFp0KvqsTfbEa',
+  access_token_key: '1373272905736392707-EY2ng3ufwXjeyMwC4XTi3QzDQBuwO2',
+  access_token_secret: 'TOjwBmRBSoTKsayMIEq4f2GM6lJwZyQYxOkfgHYO1g5OW'
 }
 
 var Twitter = new TwitterPackage(secret);
@@ -17,30 +17,35 @@ var Twitter = new TwitterPackage(secret);
 
 //Twitter stream
 
-var hashtag = '#brexit'; //put any hashtag to listen e.g. #brexit
-console.log('Listening to:' + hashtag);
+// var hashtag = '#PlayAtHome'; //put any hashtag to listen e.g. #brexit
+// console.log('Listening to:' + hashtag);
 
-Twitter.stream('statuses/filter', { track: hashtag }, function (stream) {
-  stream.on('data', function (tweet) {
-    console.log('Tweet:@' + tweet.user.screen_name +
-      '\t' + tweet.text);
-    console.log('------')
-  });
+// Twitter.stream('statuses/filter', { track: hashtag }, function (stream) {
+//   stream.on('data', function (tweet) {
+//     console.log('Tweet:@' + tweet.user.screen_name +
+//       '\t' + tweet.text);
+//     console.log('------')
+//   });
 
-  stream.on('error', function (error) {
-    console.log(error);
-  });
-});
-
-
+//   stream.on('error', function (error) {
+//     console.log(error);
+//   });
+// });
 
 
-tweet('I am a Twitter Bot!', null, null);
+//   stream.on('error', function (error) {
+//     console.log(error);
+//   });
+// });
 
-function tweet(statusMsg, screen_name, status_id) {
+
+
+// Add your twitter username instead of null i-e: "@twitter_username"
+tweet('I am a Twitter Bot!', null);
+
+function tweet(statusMsg, screen_name) {
 
   console.log('Sending tweet to: ' + screen_name);
-  console.log('In response to:' + status_id);
   var msg = statusMsg;
   if (screen_name != null) {
     msg = '@' + screen_name + ' ' + statusMsg;
@@ -63,7 +68,7 @@ function tweet(statusMsg, screen_name, status_id) {
 
 
 
-// var retweetId = '899681279343570944';
+// var retweetId = '1372079682301071364';
 // retweet(retweetId);
 
 // function retweet(retweetId){
@@ -82,7 +87,7 @@ function tweet(statusMsg, screen_name, status_id) {
 // }
 
 
-// search('#brexit', 'popular')
+// search('#PlayAtHome', 'popular')
 // function search(hashtag, resultType){
 //     var params = {
 //         q: hashtag, // REQUIRED
