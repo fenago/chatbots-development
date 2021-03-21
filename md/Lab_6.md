@@ -129,8 +129,6 @@ channel.
 
 `http://localhost:3978/foodiebot`
 
-At this stage, you don\'t have to provide an app ID or password.
-
 
 7.  The emulator will connect to the bot (running in `app.js`). The app will start logging messages on the
     console, as shown here:
@@ -162,8 +160,6 @@ You can run backend with `nodemon app.js`. It will restart node server when any 
 
 
 ### More message types 
-
-
 
 Now that we have set up the chatbot and have the emulator to test it,
 let\'s try out more messaging options.

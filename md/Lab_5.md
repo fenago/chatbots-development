@@ -425,7 +425,7 @@ varaccountSid='your_account_sid';
 //Add your Auth Token here
 varauthToken='your_auth_token';vartwilio=require('twilio');varclient=newtwilio(accountSid,authToken);
 //Create a message with to and from numbers
-client.messages.create({body:'Srini says hello',to:'+447888999999',from:'+447888999990'}).then((message)=>console.log(message.sid));
+client.messages.create({body:'Fenago says hello',to:'+447888999999',from:'+447888999990'}).then((message)=>console.log(message.sid));
 ```
 
 In the preceding code, the `to` number must be a verified
