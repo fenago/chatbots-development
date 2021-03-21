@@ -151,7 +151,7 @@ server.post('/foodiebot', connector.listen());
 // // Bot Dialogs
 // var bot = new builder.UniversalBot(connector, [
 //     function (session) {
-//         session.send('Welcome to New India restaurant!');
+//         session.send('Welcome to restaurant!');
 //         builder.Prompts.time(session, 'Table reservations.  What time?');
 //     },
 //     function (session, results) {
@@ -174,7 +174,7 @@ server.post('/foodiebot', connector.listen());
 //Main dialogue
 var bot = new builder.UniversalBot(connector, [
     function (session) {
-        session.send("Welcome to New India restaurant.");
+        session.send("Welcome to restaurant.");
         session.beginDialog('askForOrder');
     },
     function (session) {

@@ -19,12 +19,19 @@ models.
 
 ### Prerequisites 
 
-The project requires python modules: tensorflow, Keras, and *Natural language processing (NLTK)* packages installed ( Packages have been downloaded already)
+The project requires python modules: tensorflow, Keras, and *Natural language processing (NLTK)* packages installed (Packages have been downloaded already)
 
 
 ``` 
 pip3 install tensorflow keras nltk
 ```
+
+### Lab Solution
+Complete solution of this lab is present in following directory:
+
+`/root/Desktop/chatbots-development/Lab04`
+
+
 
 ### How to Make Chatbot in Python? 
 

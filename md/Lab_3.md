@@ -39,7 +39,6 @@ website, type your city name, and give it a try.
 ### Getting weather data 
 
 
-
 Let us now set up an account in OpenWeatherMap service to obtain weather
 data.
 
@@ -135,6 +134,23 @@ hours starting from the current time: 
 Brilliant! We now have a data source to plug into our chatbot.
 
 
+
+### Lab Solution
+Complete solution of this lab is present in following directory:
+
+`/root/Desktop/chatbots-development/Lab03`
+
+Open eclipse IDE by clicking desktop icon:
+
+![](./images/1.png)
+
+Run weather api example by running `Weather.java`:
+
+![](./images/2.png)
+
+Run chatbot by running `Chatbot.java`:
+
+![](./images/3.png)
 
 
 

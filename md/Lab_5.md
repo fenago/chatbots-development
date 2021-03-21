@@ -36,6 +36,13 @@ By the end of this lab, you will be able to:
 
 
 
+### Lab Solution
+Complete solution of this lab is present in following directory. Run "npm install" in the terminal to download node modules and run application:
+
+`/root/Desktop/chatbots-development/Lab05`
+
+
+
 Exploring Transport API 
 -----------------------------------------
 
@@ -255,134 +262,12 @@ http://transportapi.com/v3/uk/train/service/23587103/2017-08-05/06:00/timetable.
 
 ##### Response 
 
-
-
 The response we get for the service timetable is as follows:
 
 
 ![](./images/0a62a854-057c-4fd5-b38b-ce46285806ef.png)
 
 
-
-Conversational design 
----------------------------------------
-
-
-
-Now that we have a good idea of the data we have in our hands, let\'s
-brainstorm the conversational tasks for our chatbot.
-
-
--   Nearest station
--   Next train
--   Time of arrival
--   Later trains from a station
--   How do I get from A to B?
-
-
-Let\'s start with a simple one: getting to the nearest station.
-
-
-
-### Nearest station 
-
-
-
-In order to get to the nearest station for a user, we need his/her
-location. This could be in the form of postcode or latLon coordinates.
-Platforms such as Facebook Messenger allow users to share location in
-the form of latLon coordinates. However, since we are going to be using
-the SMS platform, let\'s use the postcode route. The conversation for
-this task could go in one of the following ways:
-
-
-
-
-``` 
-User : Where is my nearest station?
-Bot: Can you give me your postcode?
-User : EH12 9QR
-Bot: Great. Your nearest station is South Gyle.
-```
-
-
-
-
-``` 
-User: What is the nearest station to EH12 9QR?
-Bot: The nearest station is South Gyle.
-```
-
-
-
-
-### Next train 
-
-
-
-In order to get information on the next train, the conversation could go
-the following ways:
-
-
-
-
-``` 
-User : When is the next train to Glasgow? 
-Bot : From which station?
-User : Edinburgh Park
-Bot : The next train to Glasgow Central is at 10:00.
-```
-
-
-
-
-``` 
-User : Next train
-Bot : From?
-User : Edinburgh Park
-Bot : Finding next train from Edinburgh Park. Going to?
-User :  Glasgow
-Bot : Next train to Glasgow Central is at 10:00.
-```
-
-
-
-
-### Time of arrival 
-
-
-
-Sometimes users may want to know the time of arrival of the train in
-context at a specific station. To get information on the time of
-arrival, the conversation could go as follows:
-
-
-
-
-``` 
-User : What time does the train arrive at Glasgow Central?
-Bot : The train will arrive in Glasgow Central at 11:00.
-```
-
-Many more conversations are possible in the domain of travel. All the
-preceding tasks are reactive, where the bot responds to users\'
-requests. In contrast, proactive tasks can be designed by having the bot
-initiate conversations. For instance, the bot can send train times and
-delays/cancelled information to the user at set times during the day:
-
-
-
-
-``` 
-Bot : The 15:00 train to Edinburgh Waverley is delayed to 15:30.
-User : Is there an earlier train to Haymarket?
-...
-```
-
-Conversational tasks such as a list of later trains and planning your
-route are more complex than the preceding tasks. As we proceed, we will
-see how to build a chatbot that can handle a few of the mentioned
-tasks. 
 
 
 
@@ -391,13 +276,10 @@ Building a simple SMS bot
 
 
 
-Let\'s now build the SMS platform interface for the chatbot. To bear
-with the complexity, let us do this in two steps. First, let us build a
+Let\'s now build the SMS platform interface for the chatbot. Let us build a
 bot to simply send SMS text messages to a mobile number. This could be a
 message concerning the status of a train arriving at a station or the
-next train to a certain destination from a given station. Second, we
-will build a two-way chatbot that can receive messages from users and
-respond to them appropriately. To do this, we will use a service called
+next train to a certain destination from a given station. To do this, we will use a service called
 Twilio. Twilio is a developer platform for communications enabling
 developers to add messaging, voice, and video capabilities to their
 software. We will explore how we can build notification bots and
@@ -746,133 +628,6 @@ getTrains(sourceStation, sourceStationCode, destinationStation, userPhoneNumber)
 
 9.  Congratulations! You have just created an SMS bot. 
 
-
-
-
-
-### Scheduling tasks 
-
-
-
-Now that we have a bot that sends SMS notification, let us try our hand
-at setting it to run automatically on a daily or hourly basis. This
-feature will be useful to create proactive bots that initiate
-conversation with users at certain times of the day. To do this, follow
-these steps:
-
-
-1.  Create a `bin` directory.
-2.  Move the `index.js` file into the `bin`
-    directory. Rename it as `sendTrainNotification.js`. 
-
-
-
-3.  Add as the first line of code, the following shebang:
-
-
-
-
-
-``` 
-#!/usr/bin/env node
-```
-
-
-4.  Go back to the project directory. We are now going to push this app
-    into Heroku cloud.
-5.  Create a Git repository, add files, and commit:
-
-
-
-
-
-``` 
-git init
-git add .
-git commit -m "initial commit"
-```
-
-
-6.  Create a Heroku app:
-
-
-
-
-
-``` 
-heroku create sms-notification-bot
-```
-
-
-7.  Push the app to Heroku:
-
-
-
-
-
-``` 
-git push heroku master
-```
-
-We now have an app running at
-`https://sms-notification-bot.herokuapp.com`.
-
-
-8.  Run the app locally:
-
-
-
-
-
-``` 
-heroku run sendTrainNotification.js
-```
-
-This should run the web app and send an SMS with train summaries to the
-user\'s phone:
-
-
-![](./images/a1aeb0eb-d50c-47f4-9750-077b08dfef79.png)
-
-
-
-9.  Now, we need to schedule the task. To do this, we need to set it up
-    on the Heroku resources page of the app. Go
-    to `https://dashboard.heroku.com/apps/sms-notification-bot/resources`
-    on your browser:
-
-
-
-![](./images/1b608330-259e-4231-ac07-90931d36adcd.png)
-
-
-
-10. Type `Scheduler` in the **`Add-ons`**search box and choose
-    **`Heroku Scheduler`**. 
-11. Once added, click **`Heroku Scheduler`**. This will take you
-    to <https://scheduler.heroku.com/dashboard>.
-12. Click **`Add new job`**.
-13. In the textbox with **`$`**, type the name of the task to run (that
-    is, `sendTrainNotification.js`). Choose **`Frequency`**
-    (**`Daily`**, **`Hourly`**, or **`Every 10 minutes`**) and
-    click **`SAVE`**:
-
-
-
-![](./images/5cb3a17c-8daf-4f15-858d-d472ba9f5b09.png)
-
-
-
-14. Check logs on the console of Heroku logs. You should notice that the
-    task will be running at regular set intervals and SMS are being sent
-    to the user:
-
-
-
-![](./images/f4253a66-44a0-4dd0-921a-64b7cad24007.png)
-
-
-Congratulations! You have now built a proactive SMS bot. 
 
 
 

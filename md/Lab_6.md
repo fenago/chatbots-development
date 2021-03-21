@@ -15,8 +15,7 @@ build chatbots using the SDK, test them on the emulator, and deploy them
 in the cloud. Next, we will learn about the rich presentation options,
 and the devices for which the conversational flow can be designed. We
 will then explore the Zomato service for restaurant data and integrate
-it into a chatbot built using the Bot Builder SDK. We will finally
-deploy it on Skype.
+it into a chatbot built using the Bot Builder SDK.
 
 By the end of this lab, you will be able to:
 
@@ -26,51 +25,27 @@ By the end of this lab, you will be able to:
 -   Register the bot with Bot Framework
 -   Host the bot in the cloud
 -   Understand message types and card types
--   Integrate the bot with Skype
 
 
+### Lab Solution
+Complete solution of this lab is present in following directory. Run "npm install" in the terminal to download node modules and run application:
 
-MS Bot Framework 
-----------------------------------
-
-
-
-MS Bot Framework is a Microsoft product for chatbot development. It
-houses three products: Bot Builder SDK, Bot Framework Portal, and
-channels. Bot Builder SDK is the toolkit for building chatbots. It has
-libraries of classes and code that represent various elements of a
-conversation. These can be used in our development process to build
-chatbots at a faster pace than building them from scratch. The Bot
-Framework Portal is used to register the bot in order to manage it
-efficiently and there is a host of tools for analytics and diagnostics
-that can be used on this portal. Finally, the framework provides a
-unified approach to integrating with several channels.
-
-There are a huge number of channels that you can integrate your bot
-with, including Skype, Facebook Messenger, Kik, Telegram, Slack, MS
-Teams, and Twilio. You can also create a web chat client using the
-portal that can be embedded on any website. In addition to the three
-tools, there are two other tools that are very useful during the
-development process: channel emulator and channel inspector. 
-
-
+`/root/Desktop/chatbots-development/Lab06`
 
 ### Channel emulator 
 
 
-
-Before we begin, we need to install software called a channel emulator.
-We will be using this to emulate the channel (for example, Skype) to
+We will usesoftware called a channel emulator.
+We will be using this to emulate the channel to
 connect to the bot locally for development and testing purposes. You can
 chat with your bot as well as inspect the messages sent and received to
-identify any bugs.
+identify any bugs. Click MS Bot desktop to launch emulator:
 
-To download it, go to the following page:
 
-<https://github.com/Microsoft/BotFramework-Emulator/releases/tag/v3.5.31>
 
-Download the version based on your needs and install it on your
-computer.
+![](./images/4.png)
+
+![](./images/5.png)
 
 
 
@@ -107,10 +82,7 @@ botbuilder library and create a bot using Node.js:
 
 
 3.  Create a file named `app.js`. 
-4.  In `app.js`, paste the following code (from the Bot
-    Framework tutorials):
-
-
+4.  In `app.js`, paste the following code (from the Bot Framework tutorials):
 
 
 
@@ -155,13 +127,12 @@ channel.
     connect:
 
 
-`http://localhost:3978/api/messages`
+`http://localhost:3978/foodiebot`
 
 At this stage, you don\'t have to provide an app ID or password.
 
 
-7.  The emulator will connect to the bot (running in
-    `app.js`). The app will start logging messages on the
+7.  The emulator will connect to the bot (running in `app.js`). The app will start logging messages on the
     console, as shown here:
 
 
@@ -185,136 +156,9 @@ At this stage, you don\'t have to provide an app ID or password.
 
 
 
+**Protip:** 
 
-### Deploying your bot  
-
-
-
-For now, we have our bot running on a local machine and have interacted
-with it over the channel emulator. How about we push it further and get
-it talking to the user on a website. To do this, we need to register our
-bot in Bot Framework\'s very own bot directory. To get your bot
-registered, perform the following steps:
-
-
-1.  Go to the Bot Framework page
-    at [https://dev.botframework.com](https://dev.botframework.com/).
-2.  Create an account, if you don\'t already have one. Sign in.
-3.  Click the **`My bots`** tab.
-4.  Click **`Create a bot`**:
-
-
-
-![](./images/27e76f7f-344b-421b-8d1a-b7cf307a8907.png)
-
-
-
-5.  Click **`Create`**. Choose
-    **`Register an existing bot built using Bot Builder SDK`**:
-
-
-
-![](./images/8210539f-2b37-4a30-b454-9f8bcce9d214.png)
-
-
-
-6.  Scroll down to **`Configuration`**.
-    Click **`Create Microsoft App ID and Password`**:
-
-
-
-![](./images/3cabd414-cf77-41cb-b54d-2b47f459d27c.png)
-
-
-Copy the app ID and password and hang on to it.
-
-
-7.  Go back to `app.js` and replace the app ID and password
-    variable with these new values. Save it. Alternatively, we can set
-    these as configuration parameters.
-8.  We are now ready to host our bot in the cloud and link it up to the
-    Bot Framework register. In order to do that, we need to
-    create `Procfile`. Create a file called
-    `Procfile`, which tells Heroku how to start the app. Here
-    is what goes into `Procfile`:
-
-
-
-
-
-``` 
-web: node app.js
-```
-
-
-9.  Create a Heroku web app:
-
-
-
-
-
-``` 
-> heroku create foodie-bot-sj
-```
-
-
-10. We need a Git repository to store our bot code: 
-
-
-
-
-
-``` 
-> git init 
-> git add .
-> git commit -m initial-commit
-```
-
-
-11. Finally, let\'s push the code: 
-
-
-
-
-
-``` 
-> git push heroku master
-```
-
-Now we need to set the app ID and password as config variables in
-Heroku:
-
-
-
-
-``` 
-> heroku config:set MICROSOFT_APP_PASSWORD=<YOUR_APP_PASSWORD>
-> heroku config:set MICROSOFT_APP_ID=<YOUR_APP_ID>
-```
-
-
-12. Having pushed the code onto the cloud, we can test it using the
-    channel emulator. Type the URL of the bot, along with the app ID and
-    password, and click **`CONNECT`**:
-
-
-
-![](./images/218d9168-90cc-4336-81a2-1126ce2a9762.png)
-
-
-
-13. Once connected, type your message to the bot. You will see the bot
-    parroting the messages that you send: 
-
-
-
-![](./images/607a1179-0046-49c1-8ba3-1fd4ef7f9149.png)
-
-
-Good work! Your bot is in the cloud and ready to be deployed on Skype
-and other channels, but we will explore that later in the lab.
-
-
+You can run backend with `nodemon app.js`. It will restart node server when any change is done in the app.js file.
 
 
 ### More message types 
@@ -341,7 +185,7 @@ gets its turn, it can send multiple messages using the
 var bot = new builder.UniversalBot(connector, [
     function (session) {
         session.send('Hello there!');
-        session.send('Welcome to New India restaurant!');
+        session.send('Welcome to restaurant!');
         });
     }
 ]);
@@ -375,8 +219,7 @@ var bot = new builder.UniversalBot(connector, [
 `builder.Prompts.text()` can be used to get text data such as
 the names of people and cities. The responses can be accessed using
 `results.response`. Try the preceding code by replacing the
-definition for the `bot` variable in the previous code for
-`app.js`: 
+definition for the `bot` variable in the previous code for `app.js`: 
 
 
 ![](./images/0af2f0d6-0e6c-4289-8fdb-1f037efba12e.png)
@@ -712,7 +555,7 @@ the name of the user: 
 // Bot Dialogs
 var bot = new builder.UniversalBot(connector, [
     function (session) {
-        session.send('Welcome to New India restaurant!');
+        session.send('Welcome to restaurant!');
         builder.Prompts.time(session, 'Table reservations. 
                              What time?');
     },
@@ -738,35 +581,6 @@ Let\'s try this out on the emulator:
 ![](./images/1e614ff2-f345-45ce-9504-7ed905bdc6c9.png)
 
 
-Let us dissect the code a little to understand what is happening. We
-start by constructing a bot using the `UniversalBot` class. As
-we build the bot, we specify the steps of the waterfall conversation as
-an array of functions. This is the root dialogue. Each function is a
-step in the conversation. At each step, the bot says or prompts the user
-with a message. In case of prompts, it expects the user to respond. The
-response is stored in `results.response`, which is updated to
-the dialogue state managed in `session.dialogData`. This
-assignment happens in the subsequent steps, the bot makes the next
-utterance or prompts for more information. As we have discussed
-previously, there are a variety of ways information can be prompted and
-verified.
-
-It is not always possible to map out the entire conversation as an array
-of functions. What if there are parts of the conversation that repeat?
-As programmers, we handle these situations using functions and methods.
-A method would be a well-defined piece of code performing a specific
-task and can be called for whenever it is required by the
-`main` method or another method. Let\'s take, for example, the
-task of payment when placing an order. Whether you are at the table or
-ordering takeout, you will have to make payments the same way. The same
-set of questions will be asked: paying by card or cash, the card number,
-the name on the card, the CVV number, and so on. Imagine a payment
-dialogue between the user and the bot. Will this dialogue be used in
-more than one scenario? Wouldn\'t it be nice to keep the conversational
-step of the payment dialogue separate and call the process whenever a
-payment needs to be taken? This is what we can accomplish using the
-`dialog()` method. 
-
 The bot that we create using the `UniversalBot` class can be
 provided conversational skills to carry out a variety of tasks, such as
 payments and product listing, using the `dialog()` method.
@@ -783,7 +597,7 @@ the order and asking for payment:
 //Main dialogue
 var bot = new builder.UniversalBot(connector, [
     function (session) {
-        session.send("Welcome to New India restaurant.");
+        session.send("Welcome to restaurant.");
         session.beginDialog('askForOrder');
     },
     function (session) {
@@ -835,22 +649,7 @@ order, and asking for payment. Within the root dialogue, we use the
 ![](./images/17ef489b-92bf-47ff-9852-3d90d7e83083.png)
 
 
-Also, notice that we have been using `session.dialogData` to
-store information from user utterances so far. But now, we are using
-`session.conversationData`. We will explore the difference
-between them later.
-
-At this point, we need to understand the concept of [**dialog
-stack**]. In the beginning, the dialog stack contains the root
-dialogue. As sub-dialogues get called from the root, these are stacked
-on top of the root dialogue. Sub-dialogues can themselves call other
-sub-dialogues. These, in turn, get stacked over them. When a
-sub-dialogue is finished, the bot returns the next dialogue in the stack
-and continues doing so until there are no more. 
-
-
-
-#### Responding to user utterances 
+ 
 
 
 
@@ -951,17 +750,6 @@ shown here:
 
 
 ![](./images/14dbc91e-44b7-4643-8445-05b0e1c41241.png)
-
-
-
-### Note 
-
-LUIS is Microsoft\'s natural language understanding service. It is
-similar to Google\'s API.AI and Amazon\'s Lex. Any of these tools can be
-integrated with the bot to provide NLU services if custom recognizers
-,such as the preceding, are not adequate. To explore this option
-further, consult the official documentation
-at <https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-recognize-intent-luis>.
 
 
 
@@ -1070,8 +858,7 @@ example, booking a table) will be abandoned:
 ![](./images/6674a9ef-2119-4bf5-8a3b-d4d26729e2dc.png)
 
 
-Notice how the confirm prompts are invoked when the user switches from
-one task to other.
+Notice how the confirm prompts are invoked when the user switches from one task to other.
 
 
 
@@ -1144,7 +931,7 @@ root dialogue with the `session.endConversation()` method:
 //Main dialogue
 var bot = new builder.UniversalBot(connector, [
     function (session) {
-        session.send("Welcome to New India restaurant.");
+        session.send("Welcome to restaurant.");
         session.beginDialog('askForOrder');
     },
     function (session) {
@@ -1179,170 +966,5 @@ bot.dialog('endConversation', [
 );
 ```
 
-Now let\'s have a look at how we can store the context of the
-conversation.
 
 
-
-
-
-### Conversational state 
-
-
-
-The state of the conversation can be stored in the form of key/value
-pairs. There are four data stores that are available to do this. These
-are housed within the `session` object:
-
-
--   `dialogData`: Remember, the conversation is divided into
-    dialogs (the root dialogue and sub-dialogues initiated with
-    `beginDialog()`). Within each dialog, the state can be
-    maintained separately. This is done using
-    `session.dialogData`, which we have used in the previous
-    examples. It stores data pertaining to the current sub-dialogue, and
-    each sub-dialogue has its own copy of the `dialogData`.
-    When the dialogue finishes (that is, `endDialog()` is
-    executed) and is removed from the dialog stack, this data is
-    deleted.
--   `conversationData`: This stores data pertaining to the
-    whole conversation and is shared among all members (that is, users)
-    in the conversation. It gets cleared when the conversation ends or
-    when `endConversation()` is executed. This data can be
-    accessed using `session.conversationData`.
--   `privateConversationData`: This stores data pertaining to
-    the whole conversation as `conversationData`, but is
-    private to every individual member of the conversation. This is not
-    shared with other members participating in the conversation. It gets
-    cleared when the conversation ends or
-    when `endConversation()` is executed. This data can be
-    accessed using `session.privateConversationData`.
--    `userData`: Private data pertaining to a user can be
-    stored here. This is persistent across conversations. Data such as
-    the user\'s name, age, gender, address, phone number, email, and
-    payment info can be stored here and be used in conversations. This
-    data can be accessed using `session.userData`.
-
-
-So far, we have covered a number of concepts in the Bot Builder toolkit
-with examples worked out. We have examined how to set up a root dialogue
-and take the conversational flow into sub-dialogues. We have explored
-how to handle user utterances locally and globally, as well as the use
-of various data objects to store user and conversation data. Let us now
-proceed to building a bot with restaurant data.
-
-
-
-Connecting to Skype 
--------------------------------------
-
-
-
-Now that we have a chatbot to search for restaurants, push it back on to
-Heroku cloud as before. Remember to change the `Procfile` as
-we need to run `index.js` and not `app.js`. Having
-set up the chatbot as a web app in Heroku, we are all set to deploy the
-bot on Skype and other channels. 
-
-
-1.  Go to your dashboard on Bot Framework
-    at <https://dev.botframework.com/bots>:
-
-
-
-![](./images/2763a532-4164-4d6b-a714-dbf06311f6cb.png)
-
-
-
-2.  Choose your bot. You will see that your bot is already connected to
-    two channels, **`Skype`** and **`Web Chat`**:
-
-
-
-![](./images/cf527fd5-4ac6-4a75-a204-06e3be2f09b3.png)
-
-
-
-3.  You will also be able to see the chat client on the right side. If
-    you do not see one, you should be able to open it by pressing the
-    **`Test`** button. This is similar to the emulator. So go on and say
-    `Hi` to the bot:
-
-
-
-![](./images/afa1d7e7-8678-4c40-95b3-5509e6bb7404.png)
-
-
-You should be able to chat with the bot here as it is in the cloud and
-not on localhost. 
-
-
-4.  Click **`Skype`**:
-
-
-
-![](./images/0b73c18c-4188-411b-85e2-9743cd1a5bde.png)
-
-
-
-5.  Click **`Add to Contacts`**:
-
-
-
-![](./images/ad338ac5-fd06-4341-a77a-9f1d5e5375cc.png)
-
-
-
-6.  Click **`Open Skype`**:
-
-
-
-![](./images/b11eaf53-85f2-4ce6-9e09-6e3b3a839f7c.png)
-
-
-
-7.  Add the bot to your contacts and start chatting: 
-
-
-
-![](./images/6fb0cbc2-dbd4-4209-af9d-1e76c411504f.png)
-
-
-
-![](./images/5bf74354-77cc-428e-b154-3db8b13ebc4d.png)
-
-
-Congratulations on your new bot in Skype. Now that we have created a bot
-using Bot Builder SDK and deployed it on Skype, go explore all the other
-options that we learned about but did not get to experiment with. Add a
-user-profiling dialogue where the bot learns about the user\'s
-preferences. Extend the restaurant search dialogue by asking follow-up
-questions based on reviews, ratings, and price range once the
-restaurants are found and need further sorting. Try to add natural
-language support so that the user can switch between tasks easily. 
-
-
-
-Summary 
--------------------------
-
-
-
-In the previous labs, we explored and learned about how to build a
-chatbot using a variety of tools. These include development environments
-such as Chatfuel, natural language processing tools such as API.AI, and
-channel-specific SDKs such as Messenger SDK. However, when it comes to
-coding the conversational flow to manage the conversation, we either
-used form-based tools or built it from scratch. However, there is a
-middle path. MS Bot Framework offers the Bot Builder SDK that can be
-used to develop conversation management modules that manage how the
-dialogue flows between the bot and the user. The SDK models the elements
-of conversations in an elegant manner allowing developers to build
-chatbots quickly and easily. This gives developers greater flexibility
-than drag-and-drop tools, and it saves time and effort compared to
-building the bot from scratch.
-
-In this lab, we learned how to built a bot with the Bot Builder SDK
-and deploy it on the Skype channel. In the next lab, we will move on
-to more advanced bots that are drastically different from those that we
-have explored so far---the Twitter bot!

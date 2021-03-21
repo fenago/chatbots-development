@@ -16,6 +16,11 @@ By the end of this lab, you will be able to:
 -   Integrate NewsAPI and tweet top stories
 
 
+### Lab Solution
+Complete solution of this lab is present in following directory. Run "npm install" in the terminal to download node modules and run application:
+
+`/root/Desktop/chatbots-development/Lab07`
+
 Getting started with the Twitter app 
 ------------------------------------------------------
 
@@ -27,66 +32,29 @@ articles to followers based on their interests:
 
 
 1.  Log on to Twitter at
-    [www.twitter.com](https://twitter.com/). If you don\'t have
-    an account on Twitter, create one.
-2.  Go to <https://apps.twitter.com/>, which is Twitter\'s application
-    management dashboard.
-3.  Click the **`Create New App`** button:
+    [www.twitter.com](https://twitter.com/). If you don\'t have an account on Twitter, create one.
+
+2.  Go to <https://developer.twitter.com>, which is Twitter\'s application management dashboard.
+
+3. Apply for Twiiter developer account.
+
+4.  Create an application by filling in the form providing name & description
+
+![](./images/6.png)
 
 
+5.  Change App Permissions to "Read, Write, and Direct Messages"
 
-![](./images/118c1251-15e9-4ce5-ac35-84348dfe0391.png)
-
-
-
-4.  Create an application by filling in the form providing name,
-    description, and a website (fully-qualified URL). Read and agree to
-    the **`Developer Agreement`** and hit
-    **`Create your Twitter application`**:
+![](./images/7.png)
 
 
+6.  Copy *consumer key* and *consumer secret* ( i-e: API key & secret ) and hang on to them.
 
-![](./images/506376fd-ff08-4c1f-9e8a-0b531905136a.png)
+7.  Click `Access Token & Secret` to create a new token for your app:
 
+![](./images/8.png)
 
-
-5.  You will now see your application dashboard. Explore the tabs:
-
-
-
-![](./images/7eeab152-d1a7-40df-9d19-8c10687c3e41.png)
-
-
-
-6.  Click **`Keys and Access Tokens`**: 
-
-
-
-![](./images/2d6594c7-2ef6-4bff-90d7-30be6b84ea98.png)
-
-
-
-7.  Copy [*consumer key*] and [*consumer secret*]
-    and hang on to them.
-8.  Scroll down to **`Your Access Token`**:
-
-
-
-![](./images/15178e07-6120-43ba-af35-dacd66942ae1.png)
-
-
-
-9.  Click **`Create my access token`** to create a new token for your
-    app:
-
-
-
-![](./images/054fd0a1-9921-4785-88a5-11bf86571e62.png)
-
-
-
-10. Copy the **`Access Token`** and **`Access Token Secret`** and hang
-    on to them.
+8. Copy the `Access Token` and `Access Token Secret` and hang on to them.
 
 
 Now, we have all the keys and tokens we need to create a Twitter app.
@@ -390,7 +358,7 @@ key:
 
 
 
-2.  Click **`Get API key`**.
+2.  Click `Get API key`.
 3.  Register using your email.
 4.  Get your API key.
 

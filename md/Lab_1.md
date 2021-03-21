@@ -18,6 +18,11 @@ Let’s talk about Chatterbot, with the help of which we are planning to
 build our chatbot using Python/Flask.
 
 
+### Lab Solution
+Complete solution of this lab is present in following directory:
+
+`/root/Desktop/chatbots-development/Lab01`
+
 
 #### Let’s build our chatbot
 
