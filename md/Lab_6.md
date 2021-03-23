@@ -130,8 +130,7 @@ channel.
 `http://localhost:3978/foodiebot`
 
 
-7.  The emulator will connect to the bot (running in `app.js`). The app will start logging messages on the
-    console, as shown here:
+7.  The emulator will connect to the bot (running in `app.js`). The app will start logging messages on the console, as shown here:
 
 
 
@@ -366,9 +365,7 @@ builder.CardAction.openUrl(session, 'https://mumbaitandoor.com/bookTable','Book 
 ```
 
 There are other types of cards as well: Thumbnail card, Adaptive card,
-Audio card, and Animation card, for example. For a complete list of
-cards, please refer to the Bot Framework documentation
-at <https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-send-rich-cards>.
+Audio card, and Animation card, for example.
 
 Thumbnail cards are similar to Hero cards but smaller. You can create
 Thumbnail cards using the `ThumbnailCard` class, as shown

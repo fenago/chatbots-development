@@ -82,8 +82,7 @@ complex bots.
 
 
 
-2.  Execute the `npm install twitter --save` command to
-    install the Twitter Node.js library:
+2.  Execute the `npm install twitter --save` command to install the Twitter Node.js library:
 
 
 
@@ -211,7 +210,7 @@ capabilities that we can bestow upon our Twitter bot.
 
 
 You can also update your status on your Twitter timeline by using the
-following s[*tatus update*] module code:
+following [*status update*] module code:
 
 
 
@@ -264,9 +263,7 @@ posted the tweet. We will explore this a bit later.
 ### Retweet to your followers 
 
 
-
-You can retweet a tweet to your followers using the following r[*etweet
-status*] code:
+You can retweet a tweet to your followers using the following [*retweetstatus*] code:
 
 
 
@@ -299,7 +296,7 @@ function retweet(retweetId){
 
 
 You can also search for recent or popular tweets with hashtags using the
-following s[*earch hashtags*] code:
+following [*search hashtags*] code:
 
 
 
@@ -564,6 +561,7 @@ function tweetTopArticle(articles, screen_name, status_id){
 Run the preceding program to fetch news from CNN and post the topmost
 article on Twitter:
 
+`node tweeter.js`
 
 ![](./images/0b4f43ab-eecc-4a81-b5cb-e7858c3eec41.png)
 

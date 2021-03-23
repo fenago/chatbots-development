@@ -6,10 +6,10 @@ var request = require('request');
 console.log("Hello World! I am a twitter bot!");
 
 var secret = {
-  consumer_key: 'zpOlUHpKU2c0LvDfDw6S4CXGn',
-  consumer_secret: 'fEcbpv4gtd8Cxd5KRqO5768gqaikgs79trSnNKFp0KvqsTfbEa',
-  access_token_key: '1373272905736392707-EY2ng3ufwXjeyMwC4XTi3QzDQBuwO2',
-  access_token_secret: 'TOjwBmRBSoTKsayMIEq4f2GM6lJwZyQYxOkfgHYO1g5OW'
+  consumer_key: 'YOUR_CONSUMER_KEY',
+  consumer_secret: 'YOUR_CONSUMER_SECRET',
+  access_token_key: 'YOUR_ACCESS_TOKEN_KEY',
+  access_token_secret: 'YOUR_ACCESS_TOKEN_SECRET'
 }
 
 var Twitter = new TwitterPackage(secret);
