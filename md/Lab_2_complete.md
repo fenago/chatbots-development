@@ -152,8 +152,7 @@ To sum up: 
 
 
 
-1. Laying the Groundwork for Your First Chatbot
-===============================================
+## 1. Laying the Groundwork for Your First Chatbot
 
 Anyone can build a bot with Chatfuel—no code necessary. Here's how to
 prepare and plan for designing your first one.
@@ -285,7 +284,7 @@ Using a bot template is simple:
 [![](./chatfuel_images/shopify1.png)](./chatfuel_images/shopify1.png)
 
 1.  Click on the desired template. A window will pop up where you can
-    read more about what it includes. ⬆️
+    read more about what it includes.
 2.  In that pop-up, click **Preview in Messenger** to chat with a sample
     version of that bot.
 3.  If it seems like a good fit for your business and objectives, click
@@ -513,10 +512,10 @@ bring new users to your Messenger chatbot.
     successful clients to steadily grow their bot user bases, which is
     why it's one of the tools we recommend to all users. 📈
 
-[![](./chatfuel_images/image.png)](./chatfuel_images/image.png)
+[![](./chatfuel_images/image.png)](./chatfuel_images/image_new.png)
 
 -   You can create a post on your Facebook page with the***Send
-    Message*objective**, and compose some text explaining how it can
+    Message *objective**, and compose some text explaining how it can
     help users. Publish and pin the post to encourage anyone who visits
     your page to chat with your bot and become a subscriber.
 
