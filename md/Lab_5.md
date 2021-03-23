@@ -32,8 +32,6 @@ By the end of this lab, you will be able to:
 -   Design conversational tasks based on data
 -   Create backend task modules using Transport API
 -   Build SMS bots using Twilio
--   Integrate a Dialogflow agent to understand user utterances
-
 
 
 ### Lab Solution
